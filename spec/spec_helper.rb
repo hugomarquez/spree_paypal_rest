@@ -1,7 +1,11 @@
 require 'simplecov'
+require 'coveralls'
+
 SimpleCov.start do 
   minimum_coverage(75.0)
 end
+
+Coveralls.wear!
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

@@ -1,6 +1,7 @@
 # Spree Paypal REST
 
-This is a Paypal REST SDK extension for Spree
+This is a Paypal REST SDK extension for Spree.
+
 Behind the scenes, this extension uses [Paypal Ruby SDK](https://github.com/paypal/PayPal-Ruby-SDK).
 
 ### Why?
