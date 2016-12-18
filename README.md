@@ -1,4 +1,8 @@
 # Spree Paypal REST
+[![Gem Version](https://badge.fury.io/rb/spree_paypal_rest.svg)](https://badge.fury.io/rb/spree_paypal_rest)
+[![Build Status](https://api.travis-ci.org/hugomarquez/spree_paypal_rest.svg?branch=master)](https://travis-ci.org/hugomarquez/spree_paypal_rest)
+[![Coverage Status](https://coveralls.io/repos/github/hugomarquez/spree_paypal_rest/badge.svg?branch=master)](https://coveralls.io/github/hugomarquez/spree_paypal_rest?branch=master)
+
 
 This is a Paypal REST SDK extension for Spree.
 
