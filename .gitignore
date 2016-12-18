@@ -1,5 +1,7 @@
 .rspec
+.DS_Store
 .bundle/
+Gemfile.lock
 log/*.log
 pkg/
 coverage/
