@@ -1,0 +1,33 @@
+<fieldset>
+  <legend>Paypal Express Checkout </legend>
+
+  <table class="index">
+    <tr>
+      <th colspan="6">Transaction</th>
+    </tr>
+    <tr>
+      <td>State: </td>
+      <td>
+        <%= payment.source.state %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Token: </label></td>
+      <td>
+        <%= payment.source.token %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Payer Id: </label></td>
+      <td>
+        <%= payment.source.payer_id %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Transaction Id: </label></td>
+      <td>
+        <%= payment.source.transaction_id %>
+      </td>
+    </tr>
+  </table>
+</fieldset>
