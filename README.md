@@ -7,7 +7,6 @@ Behind the scenes, this extension uses [Paypal Ruby SDK](https://github.com/payp
 * The Official [Spree Paypal Express](https://github.com/spree-contrib/better_spree_paypal_express) extension for Spree latest update was a year ago.
 * Braintree is not available in some countries.
 * Support for latest stable Spree release 3.1
-* 
 
 ## Features
 * Paypal Express Checkout/Payment Experience API integration.
