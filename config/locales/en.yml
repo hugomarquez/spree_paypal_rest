@@ -1,0 +1,15 @@
+---
+en:
+  spree:
+    payment_has_been_cancelled: The payment has been cancelled.
+    complete_checkout: Please complete Paypal Express Checkout before continuing
+    paypal_express_checkout: Paypal Express Checkout
+    paypal_transaction: Transaction
+    paypal_state: Payment Status
+    paypal_token: Token
+    paypal_payer_id: Payer ID
+    paypal_transaction_id: Transaction ID
+    paypal_refund_id: Refund ID
+    paypal_refund_type: Refund Type
+    paypal_refunded_at: Refunded At
+    paypal_information: PayPal is an easy and secure payment method that allows you to shop on websites and applications around the world without having to share your credit card details.

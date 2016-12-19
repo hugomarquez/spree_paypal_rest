@@ -1,33 +1,19 @@
 <fieldset>
-  <legend>Paypal Express Checkout </legend>
+  <h3><%= Spree.t(:paypal_express_checkout) %></h3>
 
-  <table class="index">
+  <table class="table table-condensed">
     <tr>
-      <th colspan="6">Transaction</th>
+      <th><label><%= Spree.t(:paypal_state) %></label></th>
+      <th><label><%= Spree.t(:token) %></label></th>
+      <th><label><%= Spree.t(:paypal_payer_id) %></label></th>
+      <th><label><%= Spree.t(:paypal_transaction_id) %></label></th>
     </tr>
     <tr>
-      <td>State: </td>
-      <td>
-        <%= payment.source.state %>
-      </td>
-    </tr>
-    <tr>
-      <td><label>Token: </label></td>
-      <td>
-        <%= payment.source.token %>
-      </td>
-    </tr>
-    <tr>
-      <td><label>Payer Id: </label></td>
-      <td>
-        <%= payment.source.payer_id %>
-      </td>
-    </tr>
-    <tr>
-      <td><label>Transaction Id: </label></td>
-      <td>
-        <%= payment.source.transaction_id %>
-      </td>
+      <td><%= payment.source.state %></td>
+      <td><%= payment.source.token %></td>
+      <td><%= payment.source.payer_id %></td>
+      <td><%= payment.source.transaction_id %></td>
     </tr>
   </table>
+
 </fieldset>

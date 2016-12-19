@@ -14,3 +14,4 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 spec/dummy/public/*
 spec/dummy/log/*
+spec/dummy/.byebug_history
