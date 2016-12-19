@@ -14,9 +14,9 @@ module Spree
         payer:{
           payment_method: 'paypal',
           payer_info:{
-            first_name: order.user.billing_address.first_name,
-            last_name: order.user.billing_address.last_name,
-            email: order.user.email,
+            first_name: order.billing_address.first_name,
+            last_name: order.billing_address.last_name,
+            email: order.email,
             billing_address: billing_address(order)
           }
         },

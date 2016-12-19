@@ -43,7 +43,8 @@ module Spree
       end
     end
 
-    def refund(order)
+    def refund(amount, source, options)
+      byebug
       # TODO
     end
 

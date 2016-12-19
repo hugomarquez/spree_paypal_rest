@@ -23,11 +23,20 @@ module Spree
         transaction_id: params[:paymentId],
         state: params[:state]
       )
-      @order.payments.create!({
-        source: paypal_checkout,
-        amount: @order.total,
-        payment_method: @order.payments.last.payment_method
-      })
+
+      payment = @order.payments.last
+      
+      if payment.present?
+        if payment.payment_method.kind_of?(Spree::Gateway::PaypalExpress)
+          payment.update!({source: paypal_checkout})
+        end
+      else
+        @order.payments.create!({
+          source: paypal_checkout,
+          amount: @order.total,
+          payment_method: @order.payments.last.payment_method
+        })
+      end
 
       until @order.state == "complete"
         if @order.next!
