@@ -6,13 +6,13 @@
       <th><label><%= Spree.t(:paypal_state) %></label></th>
       <th><label><%= Spree.t(:token) %></label></th>
       <th><label><%= Spree.t(:paypal_payer_id) %></label></th>
-      <th><label><%= Spree.t(:paypal_transaction_id) %></label></th>
+      <th><label><%= Spree.t(:paypal_payment_id) %></label></th>
     </tr>
     <tr>
       <td><%= payment.source.state %></td>
       <td><%= payment.source.token %></td>
       <td><%= payment.source.payer_id %></td>
-      <td><%= payment.source.transaction_id %></td>
+      <td><%= payment.source.payment_id %></td>
     </tr>
   </table>
 

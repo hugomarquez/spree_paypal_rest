@@ -356,18 +356,20 @@ ActiveRecord::Schema.define(version: 20161212152747) do
   create_table "spree_paypal_rest_checkouts", force: :cascade do |t|
     t.string   "token"
     t.string   "payer_id"
-    t.string   "transaction_id"
+    t.string   "payment_id"
     t.string   "refund_id"
     t.string   "web_profile_id"
     t.string   "refund_type"
     t.string   "state"
+    t.string   "sale_id"
     t.datetime "refunded_at"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
+  add_index "spree_paypal_rest_checkouts", ["payment_id"], name: "index_spree_paypal_rest_checkouts_on_payment_id"
   add_index "spree_paypal_rest_checkouts", ["refund_id"], name: "index_spree_paypal_rest_checkouts_on_refund_id"
-  add_index "spree_paypal_rest_checkouts", ["transaction_id"], name: "index_spree_paypal_rest_checkouts_on_transaction_id"
+  add_index "spree_paypal_rest_checkouts", ["sale_id"], name: "index_spree_paypal_rest_checkouts_on_sale_id"
 
   create_table "spree_preferences", force: :cascade do |t|
     t.text     "value"

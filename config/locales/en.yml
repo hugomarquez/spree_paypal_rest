@@ -8,7 +8,7 @@ en:
     paypal_state: Payment Status
     paypal_token: Token
     paypal_payer_id: Payer ID
-    paypal_transaction_id: Transaction ID
+    paypal_payment_id: Transaction ID
     paypal_refund_id: Refund ID
     paypal_refund_type: Refund Type
     paypal_refunded_at: Refunded At

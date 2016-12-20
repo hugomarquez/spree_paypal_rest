@@ -13,6 +13,7 @@ module Spree
     preference :profile_name,       :string
     preference :logo_url,           :string, default: 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypal-60px.png'
 
+    # Force auto_capture
     alias_method :purchase, :authorize
 
     def source_required?
@@ -33,19 +34,38 @@ module Spree
     end
 
     def purchase(amount, source, options)
-      response = payment_source_class.find(source.transaction_id)
-      source.update(state: response.state)
-      case response.state
-      when 'created'
-        ActiveMerchant::Billing::Response.new(true, 'success', {}, {})
-      when 'failed'
-        ActiveMerchant::Billing::Response.new(true, 'failed', {}, {})
+      payment = payment_source_class.find(source.payment_id)
+      executed_payment = payment.execute(payer_id: source.payer_id)
+      sale_id = payment.transactions.first.related_resources.first.sale.id
+      source.update(state: payment.state, sale_id: sale_id)
+      byebug
+      if executed_payment
+        ActiveMerchant::Billing::Response.new(true, 'success', payment.to_hash, options)
+      else
+        ActiveMerchant::Billing::Response.new(false, 'failed', payment.to_hash, options)
       end
     end
 
     def refund(amount, source, options)
       byebug
-      # TODO
+    end
+
+    def cancel(spree_payment_id)
+      spree_payment = Spree::Payment.find(spree_payment_id)
+      payment = payment_source_class.find(spree_payment.source.payment_id)
+      sale_id = payment.transactions.first.related_resources.first.sale.id
+      sale = PayPal::SDK::REST::Sale.find(sale_id)
+      refund = sale.refund_request({
+        amount:{
+          total: spree_payment.amount,
+          currency: spree_payment.currency
+        }
+      })
+      if refund.success?
+        ActiveMerchant::Billing::Response.new(true, 'success', refund.to_hash, {})
+      else
+        ActiveMerchant::Billing::Response.new(false, 'failed', payment.to_hash, options)
+      end
     end
 
     def profile_options
@@ -60,6 +80,5 @@ module Spree
         temporary: preferred_temporary
       }
     end
-
   end
 end

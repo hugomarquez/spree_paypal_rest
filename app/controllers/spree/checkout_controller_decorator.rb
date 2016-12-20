@@ -20,7 +20,7 @@ module Spree
       paypal_checkout = Spree::PaypalRestCheckout.new(
         token: params[:token],
         payer_id: params[:PayerID],
-        transaction_id: params[:paymentId],
+        payment_id: params[:paymentId],
         state: params[:state]
       )
 
