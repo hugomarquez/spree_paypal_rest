@@ -23,7 +23,7 @@ Behind the scenes, this extension uses [Paypal Ruby SDK](https://github.com/payp
 Before installing this extension please follow Spree installation Guide.
     
     cd my_project
-    echo "gem 'spree_paypal_rest', '0.0.1'" >> Gemfile
+    echo "gem 'spree_paypal_rest', '1.0.0'" >> Gemfile
     bundle
     rails g spree_paypal_rest:install
     rails server
