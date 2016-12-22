@@ -21,8 +21,8 @@ module Spree
           }
         },
         redirect_urls: {
-          return_url: 'http://localhost:3000' + Core::Engine.routes.url_helpers.paypal_express_return_order_checkout_path(order.id),
-          cancel_url: 'http://localhost:3000' + Core::Engine.routes.url_helpers.paypal_express_cancel_order_checkout_path(order.id),
+          return_url: Store.current.url + Core::Engine.routes.url_helpers.paypal_express_return_order_checkout_path(order.id),
+          cancel_url: Store.current.url + Core::Engine.routes.url_helpers.paypal_express_cancel_order_checkout_path(order.id),
         },
         transactions:[{
           item_list:{

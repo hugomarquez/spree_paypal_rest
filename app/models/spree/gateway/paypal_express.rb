@@ -58,7 +58,7 @@ module Spree
         }
       })
       if paypal_refund.success?
-        refund_type = payment.amount == amount.to_f ? 'Full' : 'Partial'
+        refund_type = paypal_refund.amount == amount.to_f ? 'Full' : 'Partial'
         source.update(
           refund_id: paypal_refund.id,
           refund_type: refund_type,

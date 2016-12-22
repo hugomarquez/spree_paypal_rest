@@ -23,7 +23,7 @@ Behind the scenes, this extension uses [Paypal Ruby SDK](https://github.com/payp
 Before installing this extension please follow Spree installation Guide.
     
     cd my_project
-    echo "gem 'spree_paypal_rest', '1.0.0'" >> Gemfile
+    echo "gem 'spree_paypal_rest', '1.0.1'" >> Gemfile
     bundle
     rails g spree_paypal_rest:install
     rails server
@@ -40,7 +40,9 @@ You will also need a "Personal" account to test the transactions on your site. C
 
 ### Spree Backend
 
-In Spree, go to the admin backend, click "Configuration -> Payment Methods" and create a new payment method. Select "Spree::Gateway::PaypalExpress" as the provider, and click "Create".
+In Spree, go to the admin backend, click "Configuration -> General Settings" and add the Site URL.
+
+Then go to the admin backend, click "Configuration -> Payment Methods" and create a new payment method. Select "Spree::Gateway::PaypalExpress" as the provider, and click "Create".
 
 Then enter the following information for your paypal **Business** Account:
 * Brand Name
@@ -66,7 +68,6 @@ Then enter the following information for your paypal **Business** Account:
 * Internationalization.
 * More testing.
 * Follow Spree versioning style.
-* Add store return and cancel url paths for PaypalPayment#payment_payload
 
 
 ## Contributing
