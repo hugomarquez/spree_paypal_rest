@@ -36,36 +36,43 @@ module Spree
     def purchase(amount, source, options)
       payment = payment_source_class.find(source.payment_id)
       executed_payment = payment.execute(payer_id: source.payer_id)
-      sale_id = payment.transactions.first.related_resources.first.sale.id
-      source.update(state: payment.state, sale_id: sale_id)
-      byebug
+      source.update(state: payment.state)
       if executed_payment
-        ActiveMerchant::Billing::Response.new(true, 'success', payment.to_hash, options)
+        sale_id = payment.transactions.first.related_resources.first.sale.id
+        source.update(sale_id: sale_id)
+        ActiveMerchant::Billing::Response.new(true, 'Success', payment.to_hash, options)
       else
-        ActiveMerchant::Billing::Response.new(false, 'failed', payment.to_hash, options)
+        ActiveMerchant::Billing::Response.new(false, payment.error.message, payment.to_hash, options)
       end
     end
 
     def refund(amount, source, options)
-      byebug
+      provider
+      payment = payment_source_class.find(source.payment_id)
+      sale_id = payment.transactions.first.related_resources.first.sale.id
+      sale = PayPal::SDK::REST::Sale.find(sale_id)
+      paypal_refund = sale.refund_request({
+        amount:{
+          total: amount,
+          currency: options[:currency]
+        }
+      })
+      if paypal_refund.success?
+        refund_type = payment.amount == amount.to_f ? 'Full' : 'Partial'
+        source.update(
+          refund_id: paypal_refund.id,
+          refund_type: refund_type,
+          refunded_at: paypal_refund.create_time
+        )
+        ActiveMerchant::Billing::Response.new(true, 'Refund Successful', paypal_refund.to_hash, options)
+      else
+        ActiveMerchant::Billing::Response.new(false, paypal_refund.error.message, paypal_refund.to_hash, options)
+      end
     end
 
     def cancel(spree_payment_id)
       spree_payment = Spree::Payment.find(spree_payment_id)
-      payment = payment_source_class.find(spree_payment.source.payment_id)
-      sale_id = payment.transactions.first.related_resources.first.sale.id
-      sale = PayPal::SDK::REST::Sale.find(sale_id)
-      refund = sale.refund_request({
-        amount:{
-          total: spree_payment.amount,
-          currency: spree_payment.currency
-        }
-      })
-      if refund.success?
-        ActiveMerchant::Billing::Response.new(true, 'success', refund.to_hash, {})
-      else
-        ActiveMerchant::Billing::Response.new(false, 'failed', payment.to_hash, options)
-      end
+      refund(spree_payment.amount, spree_payment.source, {currency: spree_payment.currency})
     end
 
     def profile_options

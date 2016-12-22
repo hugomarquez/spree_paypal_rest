@@ -63,16 +63,15 @@ Then enter the following information for your paypal **Business** Account:
 * [Payments API](https://developer.paypal.com/docs/api/payments/)
 
 ## TO-DO
-* Refund action in Spree::Gateway::PaypalExpress.
-* Cancel action in Spree::Gateway::PaypalExpress.
 * Internationalization.
-* More testing and specs always welcome.
+* More testing.
 * Follow Spree versioning style.
+* Add store return and cancel url paths for PaypalPayment#payment_payload
 
 
 ## Contributing
 
-In the spirit of [free software](1), **everyone** is encouraged to help improve this project.
+In the spirit of free software, **everyone** is encouraged to help improve this project.
 
 Here are some ways *you* can contribute:
 
@@ -95,7 +94,6 @@ Starting point:
 * Ensure specs pass by running `bundle exec rspec spec`
 * Submit your pull request
 
-[1]: http://www.fsf.org/licensing/essays/free-sw.html
 [2]: https://github.com/spree/better_spree_paypal_express/issues
 
 ## License
