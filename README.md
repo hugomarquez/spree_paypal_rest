@@ -17,7 +17,14 @@ Behind the scenes, this extension uses [Paypal Ruby SDK](https://github.com/payp
 * Paypal Express Checkout/Payment Experience API integration.
 * Support for Promotions and Adjustments.
 * Let Spree handle Orders and Payments flow.
-* Fixes promotion code not detected when enter key is pressed in payment form. https://github.com/spree-contrib/better_spree_paypal_express/issues/119
+
+## Fixes
+* [Paypal not trigger submit coupon code.](https://github.com/spree-contrib/better_spree_paypal_express/issues/119)
+* [NotImplementedError (You must implement cancel method for this payment method.)](https://github.com/spree-contrib/better_spree_paypal_express/issues/171)
+* [Customer Reimburse fails](https://github.com/spree-contrib/better_spree_paypal_express/issues/169)
+* [Undefined method credit](https://github.com/spree-contrib/better_spree_paypal_express/issues/97)
+* [Error When Trying to Cancel Order in Dev Mode](https://github.com/spree-contrib/better_spree_paypal_express/issues/91)
+* ["Save and continue" does nothing useful when PayPal method is selected](https://github.com/spree-contrib/better_spree_paypal_express/issues/32)
 
 ## Installation
 Before installing this extension please follow Spree installation Guide.
