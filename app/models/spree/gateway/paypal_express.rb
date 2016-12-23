@@ -75,6 +75,12 @@ module Spree
       refund(spree_payment.amount, spree_payment.source, {currency: spree_payment.currency})
     end
 
+    def credit(amount, source, options)
+      origin = options[:originator]
+      fixed_amount = Money.new(amount * 0.01).money.to_s
+      refund(fixed_amount, origin.payment.source, {currency: origin.payment.currency, originator: origin})
+    end
+
     def profile_options
       {
         profile_name: preferred_profile_name,
